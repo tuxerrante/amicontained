@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - name: Mark workspace as safe for git
+        run: git config --global --add safe.directory /github/workspace
       - name: make all
         uses: docker://golang:latest
         with:
