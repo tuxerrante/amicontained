@@ -6,10 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Mark workspace as safe for git
-        run: git config --global --add safe.directory /github/workspace
       - name: make all
         uses: docker://golang:latest
         with:
           entrypoint: bash
-          args: -c "go get honnef.co/go/tools/cmd/staticcheck && make all"
+          args: -c "go get honnef.co/go/tools/cmd/staticcheck && git config --global --add safe.directory /github/workspace && make all"
