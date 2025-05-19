@@ -94,41 +94,6 @@ func main() {
 	}
 }
 
-func walkpath(path string, info os.FileInfo, err error) error {
-	if err != nil {
-		if debug {
-			fmt.Println(err)
-		}
-	} else {
-		switch mode := info.Mode(); {
-		case mode&os.ModeSocket != 0:
-			if debug {
-				fmt.Println("Valid Socket: " + path)
-			}
-			resp, err := checkSock(path)
-			if err == nil {
-				if resp.StatusCode >= 200 && resp.StatusCode <= 299 {
-					fmt.Println("Valid Docker Socket: " + path)
-				} else {
-					if debug {
-						fmt.Println("Invalid Docker Socket: " + path)
-					}
-				}
-				defer resp.Body.Close()
-			} else {
-				if debug {
-					fmt.Println("Invalid Docker Socket: " + path)
-				}
-			}
-		default:
-			if debug {
-				fmt.Println("Invalid Socket: " + path)
-			}
-		}
-	}
-	return nil
-}
-
 func getValidSockets(_ string) ([]string, error) {
 	// List of common container socket paths
 	socketPaths := []string{
@@ -153,7 +118,10 @@ func getValidSockets(_ string) ([]string, error) {
 				fmt.Println("Valid Docker/OCI Socket:", path)
 				sockets = append(sockets, path)
 				if resp != nil {
-					resp.Body.Close()
+					errClose := resp.Body.Close()
+					if errClose != nil && debug {
+						log.Printf("Error closing response body: %v", errClose)
+					}
 				}
 			} else if debug {
 				log.Printf("Invalid Docker/OCI Socket: %s", path)
@@ -230,7 +198,12 @@ func loadSyscallDescriptions(path string) map[int]string {
 	if err != nil {
 		return descs
 	}
-	defer file.Close()
+	defer func() {
+		errClose := file.Close()
+		if errClose != nil && debug {
+			log.Printf("Error closing file: %v", errClose)
+		}
+	}()
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -362,7 +335,12 @@ func getUserNamespaceInfo() (bool, []userMapping) {
 	if err != nil {
 		return false, nil
 	}
-	defer file.Close()
+	defer func() {
+		errClose := file.Close()
+		if errClose != nil && debug {
+			log.Printf("Error closing file: %v", errClose)
+		}
+	}()
 
 	var mappings []userMapping
 	var enabled bool

@@ -27,7 +27,7 @@ func TestHasNamespace(t *testing.T) {
 
 func TestGetUserNamespaceInfo(t *testing.T) {
 	_, mappings := getUserNamespaceInfo()
-	if len(mappings) < 0 {
+	if len(mappings) == 0 {
 		t.Error("expected mappings to be >= 0")
 	}
 }
