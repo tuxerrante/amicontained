@@ -1,3 +1,4 @@
+# https://github.com/torvalds/linux/blob/master/arch/x86/entry/syscalls/syscall_64.tbl
 # Syscall number, name, and description for x86_64 Linux
 # Format: <number> <name> <description>
 0 read Read from a file descriptor

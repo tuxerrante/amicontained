@@ -54,7 +54,8 @@ static: prebuild ## Builds a static executable.
 				-tags "$(BUILDTAGS) static_build" \
 				${GO_LDFLAGS_STATIC} -o $(NAME) .
 
-all: clean build fmt lint test staticcheck vet install ## Runs a clean, build, fmt, lint, test, staticcheck, vet and install.
+all: clean build fmt test staticcheck vet install ## Runs a clean, build, fmt, test, staticcheck, vet and install.
+# Note: 'lint' is intentionally excluded from 'all'. Run 'make lint' or use the GitHub Action for linting.
 
 .PHONY: fmt
 fmt: ## Verifies all files have been `gofmt`ed.
