@@ -1,0 +1,338 @@
+# Syscall number, name, and description for x86_64 Linux
+# Format: <number> <name> <description>
+0 read Read from a file descriptor
+1 write Write to a file descriptor
+2 open Open a file
+3 close Close a file descriptor
+4 stat Get file status
+5 fstat Get file status by file descriptor
+6 lstat Get file status by path, not following symlinks
+7 poll Wait for some event on a file descriptor
+8 lseek Reposition read/write file offset
+9 mmap Map files or devices into memory
+10 mprotect Set protection on a region of memory
+11 munmap Unmap files or devices from memory
+12 brk Change data segment size
+13 rt_sigaction Examine and change a signal action
+14 rt_sigprocmask Examine and change blocked signals
+15 rt_sigreturn Return from signal handler
+16 ioctl Control device
+17 pread64 Read from a file descriptor at a given offset
+18 pwrite64 Write to a file descriptor at a given offset
+19 readv Read data into multiple buffers
+20 writev Write data from multiple buffers
+21 access Check user's permissions for a file
+22 pipe Create pipe
+23 select Synchronous I/O multiplexing
+24 sched_yield Yield the processor
+25 mremap Remap a virtual memory address
+26 msync Synchronize a file with a memory map
+27 mincore Determine whether pages are resident in memory
+28 madvise Give advice about use of memory
+29 shmget Allocate a System V shared memory segment
+30 shmat Attach a System V shared memory segment
+31 shmctl System V shared memory control
+32 dup Duplicate a file descriptor
+33 dup2 Duplicate a file descriptor to a given value
+34 pause Wait for a signal
+35 nanosleep High-resolution sleep
+36 getitimer Get value of an interval timer
+37 alarm Set an alarm clock for delivery of a signal
+38 setitimer Set value of an interval timer
+39 getpid Get process ID
+40 sendfile Transfer data between file descriptors
+41 socket Create an endpoint for communication
+42 connect Initiate a connection on a socket
+43 accept Accept a connection on a socket
+44 sendto Send a message on a socket
+45 recvfrom Receive a message from a socket
+46 sendmsg Send a message on a socket
+47 recvmsg Receive a message from a socket
+48 shutdown Shut down part of a full-duplex connection
+49 bind Bind a name to a socket
+50 listen Listen for connections on a socket
+51 getsockname Get socket name
+52 getpeername Get name of connected peer socket
+53 socketpair Create a pair of connected sockets
+54 setsockopt Set options on sockets
+55 getsockopt Get options on sockets
+56 clone Create a child process
+57 fork Create a child process (obsolete)
+58 vfork Create a child process and block parent
+59 execve Execute a program
+60 exit Terminate the calling process
+61 wait4 Wait for process to change state
+62 kill Send signal to a process
+63 uname Get name and information about current kernel
+64 semget Get a System V semaphore set identifier
+65 semop System V semaphore operations
+66 semctl System V semaphore control operations
+67 shmdt Detach a System V shared memory segment
+68 msgget Get a System V message queue identifier
+69 msgsnd Send a message to a System V message queue
+70 msgrcv Receive a message from a System V message queue
+71 msgctl System V message control operations
+72 fcntl File control operations
+73 flock Apply or remove an advisory lock on an open file
+74 fsync Synchronize a file's in-core state with storage device
+75 fdatasync Synchronize a file's in-core state with storage device (data only)
+76 truncate Truncate a file to a specified length
+77 ftruncate Truncate a file to a specified length (by file descriptor)
+78 getdents Get directory entries
+79 getcwd Get current working directory
+80 chdir Change working directory
+81 fchdir Change working directory (by file descriptor)
+82 rename Rename a file
+83 mkdir Create a directory
+84 rmdir Remove a directory
+85 creat Create a file
+86 link Make a new name for a file
+87 unlink Delete a name and possibly the file it refers to
+88 symlink Make a new name for a file
+89 readlink Read value of a symbolic link
+90 chmod Change permissions of a file
+91 fchmod Change permissions of a file (by file descriptor)
+92 chown Change ownership of a file
+93 fchown Change ownership of a file (by file descriptor)
+94 lchown Change ownership of a file (by path, not following symlinks)
+95 umask Set file mode creation mask
+96 gettimeofday Get the time
+97 getrlimit Get resource limits
+98 getrusage Get resource usage
+99 sysinfo Return system information
+100 times Get process times
+101 ptrace Process trace
+102 getuid Get user identity
+103 syslog System log
+104 getgid Get group identity
+105 setuid Set user identity
+106 setgid Set group identity
+107 geteuid Get effective user identity
+108 getegid Get effective group identity
+109 setpgid Set process group ID
+110 getppid Get parent process ID
+111 getpgrp Get process group ID
+112 setsid Create a session and set process group ID
+113 setreuid Set real and effective user IDs
+114 setregid Set real and effective group IDs
+115 getgroups Get list of supplementary group IDs
+116 setgroups Set list of supplementary group IDs
+117 setresuid Set real, effective and saved user IDs
+118 getresuid Get real, effective and saved user IDs
+119 setresgid Set real, effective and saved group IDs
+120 getresgid Get real, effective and saved group IDs
+121 getpgid Get process group ID
+122 setfsuid Set user identity used for filesystem checks
+123 setfsgid Set group identity used for filesystem checks
+124 getsid Get session ID
+125 capget Get capabilities
+126 capset Set capabilities
+127 rt_sigpending Examine pending signals
+128 rt_sigtimedwait Wait for a signal with timeout
+129 rt_sigqueueinfo Queue a signal and data
+130 rt_sigsuspend Wait for a signal
+131 sigaltstack Set and/or get signal stack context
+132 utime Change file last access and modification times
+133 mknod Create a special or ordinary file
+134 uselib Load shared library (obsolete)
+135 personality Set process execution domain
+136 ustat Get filesystem statistics (obsolete)
+137 statfs Get file system statistics
+138 fstatfs Get file system statistics (by file descriptor)
+139 sysfs Get file system type information
+140 getpriority Get program scheduling priority
+141 setpriority Set program scheduling priority
+142 sched_setparam Set scheduling parameters
+143 sched_getparam Get scheduling parameters
+144 sched_setscheduler Set scheduling policy and parameters
+145 sched_getscheduler Get scheduling policy
+146 sched_get_priority_max Get maximum scheduling priority
+147 sched_get_priority_min Get minimum scheduling priority
+148 sched_rr_get_interval Get the SCHED_RR interval for the named process
+149 mlock Lock a range of process address space into memory
+150 munlock Unlock a range of process address space
+151 mlockall Lock all current and future mappings
+152 munlockall Unlock all current mappings
+153 vhangup Simulate a hangup on the controlling terminal
+154 modify_ldt Get or set a per-process LDT entry
+155 pivot_root Change the root filesystem
+156 _sysctl Read/write kernel parameters (obsolete)
+157 prctl Operations on a process or thread
+158 arch_prctl Set architecture-specific thread state
+159 adjtimex Tune kernel clock
+160 setrlimit Set resource limits
+161 chroot Change root directory
+162 sync Flush filesystem buffers
+163 acct Switch process accounting on or off
+164 settimeofday Set system time and timezone
+165 mount Mount a filesystem
+166 umount2 Unmount a filesystem
+167 swapon Start swapping to file/device
+168 swapoff Stop swapping to file/device
+169 reboot Reboot or enable/disable Ctrl-Alt-Del
+170 sethostname Set system hostname
+171 setdomainname Set NIS domain name
+172 iopl Change I/O privilege level
+173 ioperm Set port input/output permissions
+174 create_module Create a loadable module entry (obsolete)
+175 init_module Load a kernel module
+176 delete_module Unload a kernel module
+177 get_kernel_syms Get exported kernel symbols (obsolete)
+178 query_module Query kernel module (obsolete)
+179 quotactl Manipulate disk quotas
+180 nfsservctl Kernel nfs daemon services
+181 getpmsg Get a message from a STREAMS-based device (obsolete)
+182 putpmsg Send a message to a STREAMS-based device (obsolete)
+183 afs_syscall Reserved for AFS (obsolete)
+184 tuxcall Reserved for TUX (obsolete)
+185 security Kernel security
+186 gettid Get thread ID
+187 readahead Read file in advance
+188 setxattr Set an extended attribute value
+189 lsetxattr Set an extended attribute value (by path)
+190 fsetxattr Set an extended attribute value (by file descriptor)
+191 getxattr Get an extended attribute value
+192 lgetxattr Get an extended attribute value (by path)
+193 fgetxattr Get an extended attribute value (by file descriptor)
+194 listxattr List extended attribute names
+195 llistxattr List extended attribute names (by path)
+196 flistxattr List extended attribute names (by file descriptor)
+197 removexattr Remove an extended attribute
+198 lremovexattr Remove an extended attribute (by path)
+199 fremovexattr Remove an extended attribute (by file descriptor)
+200 tkill Send a signal to a thread
+201 time Get time in seconds
+202 futex Fast userspace locking
+203 sched_setaffinity Set a process's CPU affinity mask
+204 sched_getaffinity Get a process's CPU affinity mask
+205 set_thread_area Set a thread area (obsolete)
+206 io_setup Create an asynchronous I/O context
+207 io_destroy Destroy an asynchronous I/O context
+208 io_getevents Retrieve events from an asynchronous I/O context
+209 io_submit Submit asynchronous I/O requests
+210 io_cancel Cancel asynchronous I/O requests
+211 get_thread_area Get a thread area (obsolete)
+212 lookup_dcookie Retrieve a directory entry's cookie
+213 epoll_create Create an epoll file descriptor
+214 epoll_ctl_old Old epoll control interface
+215 epoll_wait_old Old epoll wait interface
+216 remap_file_pages Create or modify file mappings
+217 getdents64 Get directory entries (64-bit)
+218 set_tid_address Set pointer to thread ID
+219 restart_syscall Restart a system call after a signal
+220 semtimedop System V semaphore operations with timeout
+221 fadvise64 Give advice about use of file data
+222 timer_create Create a POSIX per-process timer
+223 timer_settime Set a POSIX per-process timer
+224 timer_gettime Get a POSIX per-process timer
+225 timer_getoverrun Get overrun count for a POSIX timer
+226 timer_delete Delete a POSIX per-process timer
+227 clock_settime Set time of a specified clock
+228 clock_gettime Get time of a specified clock
+229 clock_getres Get resolution of a specified clock
+230 clock_nanosleep High-resolution sleep with a specified clock
+231 exit_group Terminate all threads in a process
+232 epoll_wait Wait for events on an epoll file descriptor
+233 epoll_ctl Control interface for an epoll file descriptor
+234 tgkill Send a signal to a thread
+235 utimes Change file last access and modification times
+236 vserver Unused (was for virtual servers)
+237 mbind Set memory policy for a memory range
+238 set_mempolicy Set default NUMA memory policy
+239 get_mempolicy Retrieve NUMA memory policy
+240 mq_open Open a message queue
+241 mq_unlink Remove a message queue
+242 mq_timedsend Send a message to a message queue with timeout
+243 mq_timedreceive Receive a message from a message queue with timeout
+244 mq_notify Register for notification when a message is available
+245 mq_getsetattr Get/set message queue attributes
+246 kexec_load Load a new kernel for later execution
+247 waitid Wait for process to change state
+248 add_key Add a key to the kernel's key management facility
+249 request_key Request a key from the kernel's key management facility
+250 keyctl Key management facility operations
+251 ioprio_set Set I/O scheduling class and priority
+252 ioprio_get Get I/O scheduling class and priority
+253 inotify_init Initialize an inotify instance
+254 inotify_add_watch Add a watch to an inotify instance
+255 inotify_rm_watch Remove a watch from an inotify instance
+256 migrate_pages Move memory pages between nodes
+257 openat Open a file relative to a directory file descriptor
+258 mkdirat Create a directory relative to a directory file descriptor
+259 mknodat Create a special or ordinary file relative to a directory file descriptor
+260 fchownat Change ownership of a file relative to a directory file descriptor
+261 futimesat Change file last access and modification times relative to a directory file descriptor
+262 newfstatat Get file status relative to a directory file descriptor
+263 unlinkat Remove a file relative to a directory file descriptor
+264 renameat Rename a file relative to a directory file descriptor
+265 linkat Make a new name for a file relative to a directory file descriptor
+266 symlinkat Make a new symbolic link relative to a directory file descriptor
+267 readlinkat Read value of a symbolic link relative to a directory file descriptor
+268 fchmodat Change permissions of a file relative to a directory file descriptor
+269 faccessat Check user's permissions for a file relative to a directory file descriptor
+270 pselect6 Synchronous I/O multiplexing with signals
+271 ppoll Poll file descriptors with signals
+272 unshare Disassociate parts of the process execution context
+273 set_robust_list Set list of robust futexes
+274 get_robust_list Get list of robust futexes
+275 splice Splice data between file descriptors
+276 tee Duplicate pipe content
+277 sync_file_range Sync a file segment with disk
+278 vmsplice Splice user pages into a pipe
+279 move_pages Move individual pages of a process to another node
+280 utimensat Change file timestamps with nanosecond precision
+281 epoll_pwait Wait for events on an epoll file descriptor with signals
+282 signalfd Create a file descriptor for accepting signals
+283 timerfd_create Create a timer object
+284 eventfd Create an eventfd object
+285 fallocate Manipulate file space
+286 timerfd_settime Set time on a timerfd object
+287 timerfd_gettime Get time on a timerfd object
+288 accept4 Accept a connection on a socket with flags
+289 signalfd4 Create a file descriptor for accepting signals (with flags)
+290 eventfd2 Create an eventfd object (with flags)
+291 epoll_create1 Create an epoll file descriptor (with flags)
+292 dup3 Duplicate a file descriptor (with flags)
+293 pipe2 Create a pipe (with flags)
+294 inotify_init1 Initialize an inotify instance (with flags)
+295 preadv Read from a file descriptor at multiple offsets
+296 pwritev Write to a file descriptor at multiple offsets
+297 rt_tgsigqueueinfo Send a signal and data to a thread group
+298 perf_event_open Set up performance monitoring
+299 recvmmsg Receive multiple messages on a socket
+300 fanotify_init Initialize a fanotify group
+301 fanotify_mark Add, remove, or modify fanotify marks
+302 prlimit64 Get/set resource limits
+303 name_to_handle_at Convert a pathname to a handle
+304 open_by_handle_at Open a file via handle
+305 clock_adjtime Adjust a clock
+306 syncfs Synchronize a filesystem
+307 sendmmsg Send multiple messages on a socket
+308 setns Reassociate a thread with a namespace
+309 getcpu Determine CPU and NUMA node on which the calling thread is running
+310 process_vm_readv Read from another process's memory
+311 process_vm_writev Write to another process's memory
+312 kcmp Compare two processes to determine if they share a kernel resource
+313 finit_module Load a kernel module from a file descriptor
+314 sched_setattr Set scheduling policy and attributes
+315 sched_getattr Get scheduling policy and attributes
+316 renameat2 Rename a file relative to a directory file descriptor (with flags)
+317 seccomp Operate on Secure Computing state of the process
+318 getrandom Obtain a series of random bytes
+319 memfd_create Create an anonymous file
+320 kexec_file_load Load a new kernel for later execution (file-based)
+321 bpf Perform a BPF operation
+322 execveat Execute a program relative to a directory file descriptor
+323 userfaultfd Create a userfaultfd object
+324 membarrier Issue memory barriers
+325 mlock2 Lock a range of process address space into memory (with flags)
+326 copy_file_range Copy a range of data from one file to another
+327 preadv2 Read from a file descriptor at multiple offsets (with flags)
+328 pwritev2 Write to a file descriptor at multiple offsets (with flags)
+329 pkey_mprotect Set protection on a region of memory with a protection key
+330 pkey_alloc Allocate a protection key
+331 pkey_free Free a protection key
+332 statx Get file status (extended)
+333 io_pgetevents Retrieve events from an asynchronous I/O context (with flags)
+334 rseq Restartable sequences
+335 uretprobe Uretprobe (dynamic tracing)

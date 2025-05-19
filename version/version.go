@@ -5,3 +5,10 @@ var VERSION string
 
 // GITCOMMIT indicates which git hash the binary was built off of
 var GITCOMMIT string
+
+func getVersion() string {
+	if VERSION != "" {
+		return VERSION
+	}
+	return "dev"
+}

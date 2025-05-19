@@ -64,35 +64,33 @@ fmt: ## Verifies all files have been `gofmt`ed.
 	fi
 
 .PHONY: lint
-lint: ## Verifies `golint` passes.
+lint: ## Verifies `golangci-lint` passes.
 	@echo "+ $@"
-	@if [[ ! -z "$(shell golint ./... | grep -v '.pb.go:' | grep -v '.twirp.go:' | grep -v vendor | tee /dev/stderr)" ]]; then \
-		exit 1; \
-	fi
+	golangci-lint run --fast-only ./...
 
 .PHONY: test
 test: prebuild ## Runs the go tests.
 	@echo "+ $@"
-	@$(GO) test -v -tags "$(BUILDTAGS) cgo" $(shell $(GO) list ./... | grep -v vendor)
+	@$(GO) test -v -tags "$(BUILDTAGS) cgo" $(shell $(GO) list ./...)
 
 .PHONY: vet
 vet: ## Verifies `go vet` passes.
 	@echo "+ $@"
-	@if [[ ! -z "$(shell $(GO) vet $(shell $(GO) list ./... | grep -v vendor) | tee /dev/stderr)" ]]; then \
+	@if [[ ! -z "$(shell $(GO) vet $(shell $(GO) list ./...) | tee /dev/stderr)" ]]; then \
 		exit 1; \
 	fi
 
 .PHONY: staticcheck
 staticcheck: ## Verifies `staticcheck` passes.
 	@echo "+ $@"
-	@if [[ ! -z "$(shell staticcheck $(shell $(GO) list ./... | grep -v vendor) | tee /dev/stderr)" ]]; then \
+	@if [[ ! -z "$(shell staticcheck $(shell $(GO) list ./...) | tee /dev/stderr)" ]]; then \
 		exit 1; \
 	fi
 
 .PHONY: cover
 cover: prebuild ## Runs go test with coverage.
 	@echo "" > coverage.txt
-	@for d in $(shell $(GO) list ./... | grep -v vendor); do \
+	@for d in $(shell $(GO) list ./...); do \
 		$(GO) test -race -coverprofile=profile.out -covermode=atomic "$$d"; \
 		if [ -f profile.out ]; then \
 			cat profile.out >> coverage.txt; \
@@ -152,29 +150,20 @@ tag: ## Create a new git tag to prepare to build a release.
 	git tag -sa $(VERSION) -m "$(VERSION)"
 	@echo "Run git push origin $(VERSION) to push your new tag to GitHub and trigger a release."
 
-REGISTRY := r.j3ss.co
+REGISTRY := ghcr.io/tuxerrante
 .PHONY: image
 image: ## Create the docker image from the Dockerfile.
-	@docker build --rm --force-rm -t $(REGISTRY)/$(NAME) .
+	docker buildx build --load --rm --force-rm -t $(REGISTRY)/$(NAME) .
 
 .PHONY: image-dev
 image-dev:
-	@docker build --rm --force-rm -f Dockerfile.dev -t $(REGISTRY)/$(NAME):dev .
+	docker buildx build --load --rm --force-rm -f Dockerfile.dev -t $(REGISTRY)/$(NAME):dev .
 
 .PHONY: AUTHORS
 AUTHORS:
 	@$(file >$@,# This file lists all individuals having contributed content to the repository.)
 	@$(file >>$@,# For how it is generated, see `make AUTHORS`.)
 	@echo "$(shell git log --format='\n%aN <%aE>' | LC_ALL=C.UTF-8 sort -uf)" >> $@
-
-.PHONY: vendor
-vendor: ## Updates the vendoring directory.
-	@$(RM) go.sum
-	@$(RM) -r vendor
-	GO111MODULE=on $(GO) mod init || true
-	GO111MODULE=on $(GO) mod tidy
-	GO111MODULE=on $(GO) mod vendor
-	@$(RM) Gopkg.toml Gopkg.lock
 
 .PHONY: clean
 clean: ## Cleanup any build binaries or packages.

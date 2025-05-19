@@ -14,14 +14,14 @@ jobs:
         with:
           args: make release
       - name: upload assets
-        uses: docker://r.j3ss.co/github-dev
+        uses: docker://ghcr.io/tuxerrante/github-dev
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           entrypoint: bash
           args: -c "upload-assets ./cross/*"
       - name: update release body
-        uses: docker://r.j3ss.co/pepper
+        uses: docker://ghcr.io/tuxerrante/pepper
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

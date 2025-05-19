@@ -1,6 +1,6 @@
 # Setup name variables for the package/tool
 NAME := amicontained
-PKG := github.com/genuinetools/$(NAME)
+PKG := github.com/tuxerrante/$(NAME)
 
 CGO_ENABLED := 0
 
